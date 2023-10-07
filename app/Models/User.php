@@ -46,9 +46,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Room::class)->withPivot('is_invited');
     }
     
-    //変更前
     public function invitations(){
-        return $this->hasMany(Invitation::class);
+        //return $this->hasMany(Invitation::class);
+        return $this->hasMany(Invitation::class, 'user_id');
     }
     
     public function createdRooms(){

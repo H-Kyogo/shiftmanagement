@@ -31,10 +31,6 @@ Route::middleware('auth')->group(function () {//ログインしているuserし�
     //招待されたユーザーが招待を受け入れるルーティング　ユーザーが招待コードを使用してルームに参加する
     Route::post('/rooms/join-by-invite', [RoomController::class, 'joinByInvite'])->name('rooms.joinByInvite');
     
-    //ルーム詳細ページ
-    /*Route::get('/rooms/{room}', [RoomController::class, 'showForUser'])
-    ->name('rooms.user_show'); // 一般ユーザー*/
-    
     //user用のルーム詳細ページ
      Route::get('/rooms/{room}', [RoomController::class, 'showForUser']);// ユーザー
     

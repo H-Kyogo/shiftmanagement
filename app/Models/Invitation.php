@@ -19,5 +19,12 @@ class Invitation extends Model
     {
         return $this->belongsTo(Room::class);
     }
+    
+    protected $fillable = [
+        'user_id',
+        'room_id',
+        'invite_code',
+        // その他のカラムも必要に応じて追加
+    ];
 
 }
