@@ -20,15 +20,17 @@ class Room extends Model
     }
     
     //変更前
-    /*public function invitations(){
-        return $this->hasMany(Invitation::class);
-    }*/
+    public function invitations(){
+        //return $this->hasMany(Invitation::class);
+        return $this->hasMany(Invitation::class, 'room_id');
+    }
     
     //変更後
     public function admin(){
         return $this->belongsTo(User::class, 'admin_id');
     }
     
+    //ここで招待コードを発行する
     protected static function boot(){
         parent::boot();
         static::creating(function ($room) {

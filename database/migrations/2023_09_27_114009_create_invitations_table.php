@@ -30,6 +30,25 @@ return new class extends Migration
      *
      * @return void
      */
+     
+      public function up()
+    {
+        Schema::create('invitations', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('room_id');
+            $table->string('invite_code')->unique();
+            $table->boolean('accepted')->default(false);
+            $table->string('token')->nullable();
+            $table->timestamps();
+            
+            // 外部キー制約
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
+        });
+    }
+    
+    
     public function down()
     {
         Schema::dropIfExists('invitations');
@@ -37,7 +56,7 @@ return new class extends Migration
     
     
     //一般ユーザーのアカウントに招待コードを送る
-    public function up()
+    /*public function up()
     {
         
         Schema::create('invitations', function (Blueprint $table) {
@@ -51,6 +70,6 @@ return new class extends Migration
             //$table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
-    }
+    }*/
 
 };
