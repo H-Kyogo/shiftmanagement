@@ -41,4 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function rooms(){
+        return $this->belongsToMany(Room::class)->withPivot('is_invited');
+    }
+    
+    //変更前
+    public function invitations(){
+        return $this->hasMany(Invitation::class);
+    }
+    
+    public function createdRooms(){
+        return $this->hasMany(Room::class, 'admin_id');
+    }
 }
