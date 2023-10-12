@@ -37,4 +37,8 @@ class Room extends Model
             $room->invite_code = Str::random(10); // 10文字のランダム文字列
         });
     }
+    
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
 }

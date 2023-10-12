@@ -14,7 +14,7 @@ class RoomController extends Controller
     //インデックス
     public function index() {
         // ページネーションを使用する場合:
-        $rooms = Room::paginate(10); // 1ページに10件のルームを表示
+        $rooms = Room::paginate(15); // 1ページに10件のルームを表示
         return view('rooms.index', ['rooms' => $rooms]);
     }
     
@@ -153,7 +153,7 @@ class RoomController extends Controller
     
     public function showForAdmin(Room $room) {
         // admin向けのビュー表示ロジック
-        return view('admin.admin_show', ['room' => $room]);
+        return view('rooms.admin_show', ['room' => $room]);
     }
     
     public function showForUser(Room $room) {
