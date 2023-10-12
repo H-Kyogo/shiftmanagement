@@ -26,7 +26,7 @@
                                     <h2 class="text-black">---Members---</h2>
                                     <ul class="list-group">
                                         @foreach($room->users as $user)
-                                        <li class="text-blue-600", class="list-group-item">{{ $user->name }}</li>
+                                        <li class="list-group-item">{{ $user->name }}</li>
                                         @endforeach
                                     </ul>
                                     <h2 class="text-black">---------------------</h2>
