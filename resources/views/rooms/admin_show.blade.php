@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-layout>
     <div class="Members">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -49,14 +49,25 @@
     
     <br>
     
-    <div class="back">
+    <div class="newinformations">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <a href="{{ url('dashboard')}}">---戻る---</a>
+                    <a href="{{ url('admin/rooms/' . $room->id . '/information/create')}}">---新たなお知らせを作成する---</a>
                 </div>
             </div>
         </div>
     </div>
     
-</x-app-layout>
+    <br>
+    
+    <div class="back">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <a href="{{ url('admin/rooms/index')}}">---戻る---</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-admin-layout>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController as ProfileOfAdminController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,9 @@ Route::middleware('auth')->group(function () {//ログインしているuserし�
     
     //user用のルーム詳細ページ
      Route::get('/rooms/{room}', [RoomController::class, 'showForUser']);// ユーザー
+     
+     
+     Route::get('/posts/{post}',[PostController::class ,'show']);
     
 });
 
@@ -61,6 +65,16 @@ Route::prefix('admin')->name('admin.')->group(function(){
         
         //admin用のルーム詳細ページ
         Route::get('/rooms/{room}', [RoomController::class, 'showForAdmin']);// adminユーザー
+        
+        //お知らせ投稿画面
+        Route::get('/rooms/{room}/information/create', [PostController::class, 'createinformation']);
+        Route::post('/posts/{room}', [PostController::class, 'store']);
+        
+        //お知らせ詳細画面
+        //Route::get('/rooms/{room}/information', [PostController::class, 'information']);
+        
+        //お知らせ表示画面
+        Route::get('/posts/{post}',[PostController::class ,'show']);
         
         Route::get('/profile', [ProfileOfAdminController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileOfAdminController::class, 'update'])->name('profile.update');
