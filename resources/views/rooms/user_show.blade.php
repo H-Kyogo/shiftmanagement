@@ -54,6 +54,23 @@
                 
                 <br>
                 
+                <div class="shifts">
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                            <div class="p-6 text-gray-900">
+                                <a class="text-black">---シフト一覧---</a>
+                                @foreach($room->shifts as $shift)
+                                <br>
+                                <a class="text-blue-600", href="/admin/shifts/{{ $shift->id }}">{{ $shift->title }}</a>
+                                @endforeach
+                                <h2 class="text-black">---------------------</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <br>
+                
                 <div class="back">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

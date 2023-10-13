@@ -26,7 +26,6 @@
                         <div class="p-6 text-gray-900">
                             
                             <h1>---参加しているルーム---</h1>
-                            <br>
                             
                             @foreach($rooms as $room)
                                 <br>
