@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController as ProfileOfAdminController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ShiftController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,11 +71,15 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('/rooms/{room}/information/create', [PostController::class, 'createinformation']);
         Route::post('/posts/{room}', [PostController::class, 'store']);
         
-        //お知らせ詳細画面
-        //Route::get('/rooms/{room}/information', [PostController::class, 'information']);
-        
         //お知らせ表示画面
         Route::get('/posts/{post}',[PostController::class ,'show']);
+        
+        //シフト投稿画面
+        Route::get('/rooms/{room}/shift/create',[ShiftController::class , 'createshift']);
+        Route::post('/shifts/{room}', [ShiftController::class, 'storeshift']);
+         
+        //シフト画面表示
+        Route::get('/shifts/{shift}', [ShiftController::class, 'shiftshow']);
         
         Route::get('/profile', [ProfileOfAdminController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileOfAdminController::class, 'update'])->name('profile.update');

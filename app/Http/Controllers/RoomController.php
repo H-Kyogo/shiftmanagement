@@ -58,50 +58,14 @@ class RoomController extends Controller
             'user_id' => 'required|exists:users,id',
         ]);
         
-        //$user = User::findOrFail($data['user_id']);
-        
         // 既存の招待をチェック
         if (!$room->users()->where('user_id', $data['user_id'])->exists()) {
             $room->users()->attach($data['user_id'], ['is_invited' => true]);
             return redirect()->route('admin.rooms.index')->with('success', 'User invited successfully!');
         }
         
-        //招待コードをユーザーにセットします
-        //$user->invite_code = $room->invite_code;
-        //$user->save();
-        
         return back()->with('error', 'User is already invited to this room.');
-        
-        //return redirect()->route('admin.rooms.index')->with('success', '招待コードがユーザーのダッシュボードに送信されました！');
     }
-    
-    /*public function processInvite(Request $request, Room $room) {
-        $data = $request->validate([
-            'user_id' => 'required|exists:users,id',
-        ]);
-    
-        // 招待コードを生成
-        $inviteCode = Str::random(10);
-    
-        // 既存の招待をチェック
-        $existingInvitation = Invitation::where('user_id', $data['user_id'])
-            ->where('room_id', $room->id)
-            ->first();
-    
-        if (!$existingInvitation) {
-            // 新しい招待を作成
-            Invitation::create([
-                'user_id' => $data['user_id'],
-                'room_id' => $room->id,
-                'invite_code' => $inviteCode,
-                'accepted' => false
-            ]);
-            
-            return redirect()->route('admin.rooms.index')->with('success', 'User invited successfully!'); 
-        }
-        return back()->with('error', 'User is already invited to this room.');
-    }*/
-    
     
     public function joinByInvite(Request $request){
         
@@ -126,30 +90,6 @@ class RoomController extends Controller
     
         return redirect()->route('dashboard')->with('success', 'ルームに参加しました！');
     }
-    
-    /*public function joinByInvite(Request $request) {
-        $request->validate([
-            'invite_code' => 'required|string|exists:invitations,invite_code',
-        ]);
-        
-        $invitation = Invitation::where('invite_code', $request->invite_code)
-            ->where('user_id', auth()->id())
-            ->first();
-            
-        if (!$invitation) {
-            return back()->with('error', '招待コードが無効です。');
-        }
-        
-        // ルームへの参加処理
-        $room = Room::findOrFail($invitation->room_id);
-        $room->users()->attach(auth()->id());
-        
-        // 招待を受け入れたとしてマークする
-        $invitation->accepted = true;
-        $invitation->save();
-        
-        return redirect()->route('dashboard')->with('success', 'ルームに参加しました！');
-    }*/
     
     public function showForAdmin(Room $room) {
         // admin向けのビュー表示ロジック

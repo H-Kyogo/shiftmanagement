@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Post extends Model
+class Shift extends Model
 {
     use HasFactory;
-    //use SoftDeletes;
     
     protected $fillable = [
         'title',
         'body',
         'room_id'
+        //'category_id'
         ];
 }
