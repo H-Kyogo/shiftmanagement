@@ -7,24 +7,24 @@
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900">
                                 
-                                <h1>---お知らせを投稿する---</h1>
+                                <h1>---シフトを投稿する---</h1>
                                 <br>
-                                
-                                <form action={{"/admin/posts/".$room_id}} method="POST">
+                                             
+                                <form action={{"/admin/shifts/".$room_id}} method="POST">
                                     @csrf
                                     <div class="title">
-                                        <h2>---タイトル---</h2>
-                                        <input type="text" name="post[title]" placeholder="タイトル"/>
+                                        <h2>---日付---</h2>
+                                        <input type="text" name="shift[title]" placeholder="日付"/>
                                     </div>
                                     
                                     <br>
                                     
                                     <div class="body">
-                                        <h2>---本文---</h2>
-                                        <textarea name="post[body]" placeholder="ここに本文を書いてください"></textarea>
+                                        <h2>---メンバー/時間---</h2>
+                                        <textarea name="shift[body]" placeholder="メンバー/時間"></textarea>
                                     </div>
                                     
-                                    <input type="hidden" name="post[room_id]"  value={{$room_id}}>
+                                    <input type="hidden" name="shift[room_id]"  value={{$room_id}}>
                                     
                                     <br>
                                     
